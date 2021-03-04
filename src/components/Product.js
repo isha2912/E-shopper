@@ -3,6 +3,7 @@
 import React from 'react';
 import Counter from './Counter';
 import './Product.css';
+// import PropTypes from 'prop-types';
 
 const Product = ((props) => (
   <div className="product-container">
@@ -23,4 +24,14 @@ const Product = ((props) => (
     />
   </div>
 ));
+
+// Product.propTypes = {
+//   product: PropTypes.object.isRequired,
+//   image: PropTypes.string.isRequired,
+//   name: PropTypes.string.isRequired,
+//   price: PropTypes.number.isRequired,
+//   count: PropTypes.number.isRequired,
+
+// };
+
 export default Product;
