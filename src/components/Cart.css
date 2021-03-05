@@ -1,0 +1,58 @@
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.basket-header {
+  margin: 2rem 2rem;
+}
+.link-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+hr {
+  background-color: grey;
+}
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+th {
+  background-color: black;
+  color: white;
+}
+
+table {
+  padding: 2rem 10rem 2rem;
+  align-self: center;
+  height: 15em;
+  width: 100rem;
+}
+.continue-button {
+  margin-bottom: 5rem;
+  margin-top: 10rem;
+  margin-left: 5rem;
+  height: 3rem;
+}
+.checkout {
+  margin-right: 5rem;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 25rem;
+}
+
+.total {
+  display: flex;
+  justify-content: space-around;
+}
+
+.checkout-button {
+  float: right;
+  margin-right: 3rem;
+  height: 3rem;
+  width: 6rem;
+  margin-bottom: 1rem;
+  background-color: rgb(241, 161, 12);
+}

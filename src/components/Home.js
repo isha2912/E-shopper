@@ -21,11 +21,10 @@ class Home extends React.Component {
             <Product
               key={eachProduct.id}
               product={eachProduct}
-              onIncrement={() => this.onIncrement(eachProduct.id)}
-              onDecrement={() => this.onDecrement(eachProduct.id)}
+              onIncrement={() => this.props.onIncrement(eachProduct.id)}
+              onDecrement={() => this.props.onDecrement(eachProduct.id)}
             />
           ))}
-          ;
         </div>
       </div>
 

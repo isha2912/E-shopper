@@ -2,6 +2,8 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import './Header.css';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class Header extends React.Component {
   constructor(props) {
@@ -12,12 +14,17 @@ class Header extends React.Component {
   }
 
   render() {
+    const { cartCount } = this.props;
     return (
+
       <nav className="nav-bar">
-        <div>Logo</div>
+        <Link to="/">
+          {' '}
+          <div>Logo</div>
+        </Link>
         <div>
-          CART COUNT:
-          {this.props.cartCount}
+          <Link to="/cart">  CART COUNT: </Link>
+          {cartCount}
           {' '}
         </div>
       </nav>
@@ -25,4 +32,7 @@ class Header extends React.Component {
   }
 }
 
+Header.proptype = {
+  cartCount: PropTypes.number.isRequired,
+};
 export default Header;

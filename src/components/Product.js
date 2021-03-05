@@ -1,37 +1,45 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/destructuring-assignment */
 import React from 'react';
+import PropTypes from 'prop-types';
 import Counter from './Counter';
 import './Product.css';
-// import PropTypes from 'prop-types';
 
-const Product = ((props) => (
-  <div className="product-container">
-    <img className="img-product" src={props.product.image} alt="fruit" height="310px" width="290px" />
-    <div>
-      {props.product.name}
-    </div>
-    <div>
-      {props.product.price}
-    </div>
-    <div>
-      {props.product.count}
-    </div>
-    <Counter
-      value={props.product.count}
-      onIncrement={props.onIncrement}
-      onDecrement={props.onDecrement}
-    />
-  </div>
-));
+const Product = ((props) => {
+  const { product } = props;
+  const { onDecrement } = props;
+  const { onIncrement } = props;
 
-// Product.propTypes = {
-//   product: PropTypes.object.isRequired,
-//   image: PropTypes.string.isRequired,
-//   name: PropTypes.string.isRequired,
-//   price: PropTypes.number.isRequired,
-//   count: PropTypes.number.isRequired,
-
-// };
+  return (
+    <div className="product-container">
+      <img className="img-product" src={product.image} alt="fruit" />
+      <div>
+        {product.name}
+      </div>
+      <div>
+        {product.price}
+      </div>
+      <div>
+        {product.quantity}
+      </div>
+      <Counter
+        value={product.count}
+        onIncrement={onIncrement}
+        onDecrement={onDecrement}
+      />
+    </div>
+  );
+});
 
 export default Product;
+
+Product.propTypes = {
+  product: PropTypes.shape({
+    image: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    count: PropTypes.number.isRequired,
+    quantity: PropTypes.number.isRequired,
+  }).isRequired,
+  onDecrement: PropTypes.func.isRequired,
+  onIncrement: PropTypes.func.isRequired,
+
+};

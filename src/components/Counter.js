@@ -6,14 +6,15 @@ import React from 'react';
 function Counter(props) {
   return (
     <div>
-      <button className="button-increment" onClick={props.onIncrement}>
-        +
+      <button clssName="button-decrement" onClick={props.onDecrement}>
+        -
       </button>
+
       {props.value}
       {' '}
       in Basket
-      <button clssName="button-decrement" onClick={props.onDecrement}>
-        -
+      <button className="button-increment" onClick={props.onIncrement}>
+        +
       </button>
     </div>
   );
