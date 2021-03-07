@@ -1,0 +1,9 @@
+.counter {
+  display: flex;
+  justify-content: space-around;
+  background-color: wheat;
+  width: 100%;
+}
+.in-basket {
+  flex-grow: 2;
+}

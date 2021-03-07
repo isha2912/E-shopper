@@ -2,8 +2,15 @@
   display: "flex";
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   text-align: center;
   flex-wrap: wrap;
-  padding: 1rem;
+}
+
+.table2 {
+  padding: 2rem;
+  margin-top: 1rem;
+  align-self: center;
+  height: 15em;
+  width: 80rem;
+  border-collapse: collapse;
 }

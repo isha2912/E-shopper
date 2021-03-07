@@ -1,19 +1,20 @@
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/button-has-type */
 import React from 'react';
+import PropTypes from 'prop-types';
+import './Counter.css';
 
 function Counter(props) {
+  const { onIncrement, onDecrement, value } = props;
   return (
-    <div>
-      <button clssName="button-decrement" onClick={props.onDecrement}>
+    <div className="counter">
+      <button type="button" className="button-decrement" onClick={onDecrement}>
         -
       </button>
-
-      {props.value}
-      {' '}
-      in Basket
-      <button className="button-increment" onClick={props.onIncrement}>
+      <div className="in-basket">
+        {value}
+        {' '}
+        in Basket
+      </div>
+      <button type="button" className="button-increment" onClick={onIncrement}>
         +
       </button>
     </div>
@@ -21,3 +22,9 @@ function Counter(props) {
 }
 
 export default Counter;
+
+Counter.propTypes = {
+  value: PropTypes.number.isRequired,
+  onDecrement: PropTypes.func.isRequired,
+  onIncrement: PropTypes.func.isRequired,
+};

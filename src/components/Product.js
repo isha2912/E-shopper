@@ -15,10 +15,15 @@ const Product = ((props) => {
         {product.name}
       </div>
       <div>
-        {product.price}
+        {product.quantity}
+        {' '}
+        Kg
+
       </div>
       <div>
-        {product.quantity}
+        MRP
+        {' '}
+        {product.price}
       </div>
       <Counter
         value={product.count}

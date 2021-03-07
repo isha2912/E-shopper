@@ -2,10 +2,37 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  background-color: grey;
+  background-color: black;
   height: 100%;
   width: 100%;
+  align-items: center;
+  color: white;
 }
 .nav-bar > div {
   padding: 1rem;
+}
+.logo {
+  flex-grow: 3;
+  color: white;
+}
+.logo > img {
+  height: 4rem;
+  width: 5rem;
+  margin-left: 1rem;
+}
+
+.nav-right {
+  display: flex;
+  justify-content: space-between;
+}
+.all-product-route {
+  color: white;
+}
+.cart-count-route {
+  color: white;
+}
+.cart-count {
+  margin-left: 1rem;
+  display: flex;
+  justify-content: space-between;
 }

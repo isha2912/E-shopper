@@ -1,35 +1,37 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/destructuring-assignment */
 import React from 'react';
+import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Product from './Product';
 import './Home.css';
 
-class Home extends React.Component {
-  constructor(props) {
-    super(props);
+const Home = (props) => {
+  const { products, onIncrement, onDecrement } = props;
+  return (
+    <div className="all-products">
+      {products.map((eachProduct) => (
+        <Product
+          key={eachProduct.id}
+          product={eachProduct}
+          onIncrement={() => onIncrement(eachProduct.id)}
+          onDecrement={() => onDecrement(eachProduct.id)}
+        />
+      ))}
+    </div>
 
-    this.state = {
+  );
+};
 
-    };
-  }
-
-  render() {
-    return (
-      <div>
-        <div className="all-products">
-          {this.props.products.map((eachProduct) => (
-            <Product
-              key={eachProduct.id}
-              product={eachProduct}
-              onIncrement={() => this.props.onIncrement(eachProduct.id)}
-              onDecrement={() => this.props.onDecrement(eachProduct.id)}
-            />
-          ))}
-        </div>
-      </div>
-
-    );
-  }
-}
-
-export default Home;
+export default withRouter(Home);
+Home.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      price: PropTypes.number,
+      count: PropTypes.number,
+      image: PropTypes.string,
+      name: PropTypes.string,
+    }).isRequired,
+  ).isRequired,
+  onDecrement: PropTypes.func.isRequired,
+  onIncrement: PropTypes.func.isRequired,
+};

@@ -7,6 +7,7 @@ import Header from './components/Header';
 import Home from './components/Home';
 import Cart from './components/Cart';
 import Checkout from './components/Checkout';
+import Allorder from './components/Allorders';
 
 class App extends React.Component {
   constructor() {
@@ -164,6 +165,10 @@ class App extends React.Component {
             <Route path="/checkout" exact>
               <Checkout />
             </Route>
+            <Route path="/allorders">
+              <Allorder />
+            </Route>
+
           </Switch>
         </BrowserRouter>
 
@@ -172,22 +177,4 @@ class App extends React.Component {
   }
 }
 
-// App.prototype = {
-//   products: PropTypes.arrayOf(PropTypes.shape({
-//     id: PropTypes.number.isRequired,
-//     name: PropTypes.string.isRequired,
-//     count: PropTypes.number.isRequired,
-//     price: PropTypes.number.isRequired,
-//     image: PropTypes.string.isRequired,
-//   })).isRequired,
-//   cartCount: PropTypes.number.isRequired,
-//   cartItems: PropTypes.arrayOf(PropTypes.shape({
-//     id: PropTypes.number.isRequired,
-//     name: PropTypes.string.isRequired,
-//     count: PropTypes.number.isRequired,
-//     price: PropTypes.number.isRequired,
-//   })),
-//   onDecrement: PropTypes.func.isRequired,
-//   onIncrement: PropTypes.func.isRequired,
-// };
 export default App;

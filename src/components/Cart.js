@@ -1,9 +1,8 @@
-/* eslint-disable react/button-has-type */
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Cart.css';
 import PropTypes from 'prop-types';
+import Table from './Table';
 
 const Cart = (props) => {
   const { cartItems } = props;
@@ -20,26 +19,14 @@ const Cart = (props) => {
         {' '}
       </h1>
       <hr />
-      <table>
-        <tr>
-          <th> ITEM DESCRIPTION </th>
-          <th> UNIT PRICE</th>
-          <th> QUANTITY </th>
-          <th> SUBTOTAL </th>
-        </tr>
-        {cartItems.map((eachItem) => (
-          <tr>
-            <td>{eachItem.name}</td>
-            <td>{eachItem.price}</td>
-            <td>{eachItem.quantity * eachItem.count}</td>
-            <td>{eachItem.price * eachItem.count}</td>
-          </tr>
-        )) }
-      </table>
+      <Table cartItems={cartItems} className="table1"> </Table>
       <div className="link-buttons">
+
         <Link to="/">
-          <button className="continue-button"> CONTINUE SHOPPING </button>
+          {' '}
+          <button type="button" className="continue-button"> CONTINUE SHOPPING </button>
         </Link>
+
         <div className="checkout">
           <div className="total">
             <h3> TOTAL</h3>
@@ -48,9 +35,13 @@ const Cart = (props) => {
               {cartTotal}
             </h3>
           </div>
+
           <Link to="/checkout">
-            <button className="checkout-button"> CHECKOUT </button>
+            {' '}
+            <button type="button" className="checkout-button"> CHECKOUT </button>
+            {' '}
           </Link>
+
         </div>
       </div>
     </div>

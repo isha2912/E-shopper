@@ -1,0 +1,27 @@
+.order-container {
+  display: flex;
+  flex-direction: column;
+  margin: 3rem;
+}
+.top-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-header {
+  display: flex;
+  justify-content: space-between;
+  background-color: black;
+  color: white;
+  height: 5em;
+  width: 80rem;
+}
+.tab-data {
+  display: flex;
+  justify-content: space-between;
+  height: 5em;
+  width: 80rem;
+}
+.table2-top-header > th {
+  background-color: blue;
+}
