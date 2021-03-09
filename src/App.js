@@ -1,11 +1,7 @@
-/* eslint-disable no-undef */
-/* eslint-disable react/destructuring-assignment */
 import React, { useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { ThemeContext } from './components/ThemeContext';
 import './App.css';
-
-// import PropTypes from 'prop-types';
 import Header from './components/Header';
 import Home from './components/Home';
 import Cart from './components/Cart';

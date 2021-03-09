@@ -49,13 +49,15 @@ const Cart = (props) => {
   );
 };
 export default Cart;
-
+Cart.defaultProps = {
+  cartItems: [],
+};
 Cart.propTypes = {
   cartItems: PropTypes.arrayOf(PropTypes.shape({
     image: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     count: PropTypes.number.isRequired,
-  })).isRequired,
+  })),
   cartCount: PropTypes.number.isRequired,
 };

@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should display the nav bar Should display logo, cart count and All products 1`] = `
+<div>
+  <nav
+    class="nav-bar-light"
+  >
+    <a
+      href="/"
+    >
+       
+      <div
+        class="logo"
+      >
+        <img
+          alt="logo"
+          data-testid="img-tag"
+          src="./assets/download (1).jpeg"
+        />
+      </div>
+    </a>
+    <div
+      class="nav-right"
+    >
+      <a
+        href="/allorders"
+      >
+         
+        <h5
+          class="all-product-route-white"
+        >
+           ALL PRODUCTS 
+        </h5>
+         
+      </a>
+      <div>
+        <div
+          class="cart-count"
+        >
+          <a
+            href="/cart"
+          >
+             
+            <h5
+              class="cart-count-route-white"
+            >
+               CART COUNT:
+            </h5>
+             
+          </a>
+          <h5
+            class="cart-count-route-white"
+          >
+             
+            0
+             
+          </h5>
+        </div>
+         
+      </div>
+    </div>
+  </nav>
+</div>
+`;

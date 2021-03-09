@@ -15,7 +15,7 @@ const Header = (props) => {
       <Link to="/">
         {' '}
         <div className="logo">
-          <img src="./assets/download (1).jpeg" alt="logo" />
+          <img data-testid="img-tag" src="./assets/download (1).jpeg" alt="logo" />
         </div>
       </Link>
       <div className="nav-right">
