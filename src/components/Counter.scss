@@ -1,9 +1,10 @@
+@import "../styles/index.scss";
 .counter {
   display: flex;
   justify-content: space-around;
   background-color: wheat;
   width: 100%;
-}
-.in-basket {
-  flex-grow: 2;
+  .in-basket {
+    flex-grow: 2;
+  }
 }

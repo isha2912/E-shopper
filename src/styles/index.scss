@@ -1,0 +1,5 @@
+$primary-color: pink;
+
+@mixin media-mixin() {
+  background-color: aqua;
+}

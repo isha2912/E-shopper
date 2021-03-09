@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Counter.css';
+import './Counter.scss';
 
 function Counter(props) {
   const { onIncrement, onDecrement, value } = props;

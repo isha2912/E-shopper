@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Product from './Product';
-import './Home.css';
+import './Home.scss';
 
 const Home = (props) => {
   const { products, onIncrement, onDecrement } = props;

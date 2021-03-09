@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Counter from './Counter';
-import './Product.css';
+import './Product.scss';
 
 const Product = ((props) => {
   const { product } = props;
@@ -11,16 +11,16 @@ const Product = ((props) => {
   return (
     <div className="product-container">
       <img className="img-product" src={product.image} alt="fruit" />
-      <div>
+      <div className="product-name">
         {product.name}
       </div>
-      <div>
+      <div className="product-quantity">
         {product.quantity}
         {' '}
         Kg
 
       </div>
-      <div>
+      <div className="product-price">
         MRP
         {' '}
         {product.price}

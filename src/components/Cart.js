@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Cart.css';
+import './Cart.scss';
 import PropTypes from 'prop-types';
 import Table from './Table';
 

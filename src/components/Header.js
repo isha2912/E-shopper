@@ -1,15 +1,17 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
-import React from 'react';
-import './Header.css';
+import React, { useContext } from 'react';
+import './Header.scss';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { ThemeContext } from './ThemeContext';
 
 const Header = (props) => {
   const { cartCount } = props;
+  const theme = useContext(ThemeContext);
   return (
 
-    <nav className="nav-bar">
+    <nav className={theme ? 'nav-bar' : 'nav-bar-light'}>
       <Link to="/">
         {' '}
         <div className="logo">
@@ -19,17 +21,17 @@ const Header = (props) => {
       <div className="nav-right">
         <Link to="/allorders">
           {' '}
-          <h5 className="all-product-route"> ALL PRODUCTS </h5>
+          <h5 className={theme ? 'all-product-route' : 'all-product-route-white'}> ALL PRODUCTS </h5>
           {' '}
         </Link>
         <div>
           <div className="cart-count">
             <Link to="/cart">
               {' '}
-              <h5 className="cart-count-route"> CART COUNT:</h5>
+              <h5 className={theme ? 'cart-count-route' : 'cart-count-route-white'}> CART COUNT:</h5>
               {' '}
             </Link>
-            <h5 className="cart-count-route">
+            <h5 className={theme ? 'cart-count-route' : 'cart-count-route-white'}>
               {' '}
               {cartCount}
               {' '}

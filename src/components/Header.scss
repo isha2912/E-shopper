@@ -8,7 +8,20 @@
   align-items: center;
   color: white;
 }
+.nav-bar-light {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  color: black;
+}
 .nav-bar > div {
+  padding: 1rem;
+}
+.nav-bar-light > div {
   padding: 1rem;
 }
 .logo {
@@ -28,8 +41,14 @@
 .all-product-route {
   color: white;
 }
+.all-product-route-white {
+  color: black;
+}
 .cart-count-route {
   color: white;
+}
+.cart-count-route-white {
+  color: black;
 }
 .cart-count {
   margin-left: 1rem;
