@@ -1,4 +1,14 @@
 import React from 'react';
 
-// eslint-disable-next-line import/prefer-default-export
-export const ThemeContext = React.createContext(0);
+export const theme = {
+  dark: {
+    background: 'black',
+    color: 'white',
+  },
+
+  light: {
+    background: 'white',
+    color: 'black',
+  },
+};
+export const ThemeContext = React.createContext(theme.light);

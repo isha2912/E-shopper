@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+
 import PropTypes from 'prop-types';
 import Product from './Product';
 import './Home.css';
@@ -21,7 +21,7 @@ const Home = (props) => {
   );
 };
 
-export default withRouter(Home);
+export default (Home);
 Home.propTypes = {
   products: PropTypes.arrayOf(
     PropTypes.shape({

@@ -3,7 +3,7 @@
 exports[`Should display the nav bar Should display logo, cart count and All products 1`] = `
 <div>
   <nav
-    class="nav-bar-light"
+    class="nav-bar"
   >
     <a
       href="/"
@@ -27,7 +27,7 @@ exports[`Should display the nav bar Should display logo, cart count and All prod
       >
          
         <h5
-          class="all-product-route-white"
+          class="all-product-route"
         >
            ALL PRODUCTS 
         </h5>
@@ -42,14 +42,14 @@ exports[`Should display the nav bar Should display logo, cart count and All prod
           >
              
             <h5
-              class="cart-count-route-white"
+              class="cart-count-route"
             >
                CART COUNT:
             </h5>
              
           </a>
           <h5
-            class="cart-count-route-white"
+            class="cart-count-route"
           >
              
             0
