@@ -1,37 +1,42 @@
 import React from 'react';
-
 import PropTypes from 'prop-types';
 import Product from './Product';
 import './Home.css';
 
-const Home = (props) => {
-  const { products, onIncrement, onDecrement } = props;
-  return (
-    <div className="all-products">
-      {products.map((eachProduct) => (
-        <Product
-          key={eachProduct.id}
-          product={eachProduct}
-          onIncrement={() => onIncrement(eachProduct.id)}
-          onDecrement={() => onDecrement(eachProduct.id)}
-        />
-      ))}
-    </div>
+const Home = ({ filteredProducts, onIncrement, onDecrement }) => (
+  <div>
+    {Object.keys(filteredProducts).map((category) => (
+      <div key={category} className="row">
+        <h1>{category}</h1>
+        <div className="all-products">
+          {filteredProducts[category].map((product) => (
+            <Product
+              key={product.id}
+              product={product}
+              onIncrement={() => onIncrement(product.id, category)}
+              onDecrement={() => onDecrement(product.id, category)}
+            />
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+);
+export default Home;
 
-  );
-};
-
-export default (Home);
 Home.propTypes = {
-  products: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      price: PropTypes.number,
-      count: PropTypes.number,
-      image: PropTypes.string,
-      name: PropTypes.string,
-    }).isRequired,
-  ).isRequired,
-  onDecrement: PropTypes.func.isRequired,
+  filteredProducts: PropTypes.shape({
+    category: PropTypes.arrayOf(
+      PropTypes.shape({
+        stock: PropTypes.number.isRequired,
+        count: PropTypes.number.isRequired,
+        price: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+      }),
+    ),
+  }).isRequired,
+};
+Home.propTypes = {
   onIncrement: PropTypes.func.isRequired,
+  onDecrement: PropTypes.func.isRequired,
 };

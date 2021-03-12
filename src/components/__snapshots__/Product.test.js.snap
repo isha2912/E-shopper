@@ -8,7 +8,7 @@ exports[`Should display the product card  should match snapshot 1`] = `
     <img
       alt="fruit"
       class="img-product"
-      src="apple.jpg"
+      src="assets/banana.png"
     />
     <div
       class="product-name"

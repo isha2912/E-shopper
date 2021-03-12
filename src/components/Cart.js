@@ -7,7 +7,11 @@ import Table from './Table';
 const Cart = (props) => {
   const { cartItems } = props;
   const { cartCount } = props;
-  const cartTotal = cartItems.reduce((acc, val) => acc + val.price * val.count, 0);
+
+  const cartTotal = Object.values(cartItems).reduce((acc, val) => {
+    const categoryTotal = val.reduce((ac, cur) => ac + cur.price * cur.count, 0);
+    return acc + categoryTotal;
+  }, 0);
 
   return (
 
@@ -50,14 +54,19 @@ const Cart = (props) => {
 };
 export default Cart;
 Cart.defaultProps = {
-  cartItems: [],
+  cartItems: {},
 };
 Cart.propTypes = {
-  cartItems: PropTypes.arrayOf(PropTypes.shape({
-    image: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    count: PropTypes.number.isRequired,
-  })),
+  cartItems: PropTypes.shape({
+    category: PropTypes.arrayOf(
+      PropTypes.shape({
+        count: PropTypes.number.isRequired,
+        stock: PropTypes.number.isRequired,
+        price: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+      }),
+    ),
+  }),
+
   cartCount: PropTypes.number.isRequired,
 };

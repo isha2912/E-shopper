@@ -1,140 +1,124 @@
-import React, { useState } from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { ThemeContext } from './components/ThemeContext';
 import './App.css';
+import { getData, postData } from './utils/axios.util';
 import Header from './components/Header';
 import Home from './components/Home';
 import Cart from './components/Cart';
 import Checkout from './components/Checkout';
-import Allorder from './components/Allorders';
+import Allorders from './components/Allorders';
 
 const App = () => {
-  const [cartItems, setCartItems] = useState(0);
-  const [products, setProducts] = useState([
-    {
-      id: 1,
-      image: './assets/banana.png',
-      name: 'Banana',
-      count: 0,
-      quantity: 1,
-      price: 40,
-    },
-    {
-      id: 2,
-      image: './assets/apple.png',
-      name: 'Apple',
-      count: 0,
-      quantity: 1,
-      price: 40,
-    },
-    {
-      id: 3,
-      image: './assets/grape.png',
-      name: 'Grape',
-      count: 0,
-      quantity: 1,
-      price: 40,
-    },
-    {
-      id: 4,
-      image: './assets/cherry.png',
-      name: 'Cherry',
-      count: 0,
-      quantity: 1,
-      price: 60,
-    },
-    {
-      id: 5,
-      image: './assets/orange.png',
-      name: 'Orange',
-      count: 0,
-      quantity: 1,
-      price: 30,
-    },
-    {
-      id: 6,
-      image: './assets/peach.png',
-      name: 'Peach',
-      count: 0,
-      quantity: 1,
-      price: 40,
-    },
-    {
-      id: 7,
-      image: './assets/pineapple.png',
-      name: 'Pineapple',
-      count: 0,
-      quantity: 1,
-      price: 60,
-    },
-    {
-      id: 8,
-      image: './assets/strawberry.png',
-      name: 'Strawberry',
-      count: 0,
-      quantity: 1,
-      price: 30,
-    },
-    {
-      id: 9,
-      image: './assets/mango.png',
-      name: 'Mango',
-      count: 0,
-      quantity: 1,
-      price: 40,
-    },
-  ]);
-
+  const [cartItems, setCartItems] = useState({});
+  const [orders, setOrders] = useState([]);
+  // eslint-disable-next-line no-unused-vars
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [products, setProducts] = useState([]);
   const [cartCount, setCartCount] = useState(0);
   const [theme, setTheme] = useState(0);
+  const [filteredProducts, setFilteredProducts] = useState({});
+  const groupByCategory = (items) => items.reduce((acc, product) => {
+    const newProduct = {
+      ...product,
+      quantity: 0,
+      stock: product.count,
+      count: 0,
 
-  const onIncrement = (id) => {
-    setCartCount(cartCount + 1);
-    const newProducts = products.map((eachProduct) => {
-      if (eachProduct.id === id) {
-        return { ...eachProduct, count: eachProduct.count + 1 };
-      }
-      return eachProduct;
-    });
+    };
+    // console.log(newProduct);
+    const { category } = product;
+    if (!acc[category]) {
+      acc[category] = [];
+    }
+    acc[category].push(newProduct);
+    return acc;
+  }, {});
 
-    setProducts(newProducts);
-
-    setCartItems(newProducts);
-
-    const newCartItems = newProducts.filter((product) => product.count > 0);
-    setCartItems(newCartItems);
+  const onIncrement = (id, category) => {
+    const newProduct = filteredProducts[category].map((eachProduct) => (
+      eachProduct.id === id ? {
+        ...eachProduct,
+        count: eachProduct.stock > 0 ? eachProduct.count + 1 : eachProduct.count,
+        stock: eachProduct.stock > 0 ? eachProduct.stock - 1 : eachProduct.stock,
+      } : eachProduct
+    ));
+    filteredProducts[category] = newProduct;
+    setFilteredProducts(filteredProducts);
+    const newCount = (filteredProducts[category].find(
+      (product) => {
+        if (product.id === id) return (product.stock > 0 && product.count > 0); return false;
+      },
+    )) ? cartCount + 1 : cartCount;
+    setCartCount(newCount);
+    const newCartItem = filteredProducts[category].filter((product) => product.count > 0);
+    cartItems[category] = newCartItem;
+    setCartItems(cartItems);
   };
 
-  const onDecrement = (id) => {
-    let isEmpty = 0;
-    if (cartCount === 0) {
-      return;
-    }
-    products.forEach((eachProduct) => {
-      if (eachProduct.id === id && eachProduct.count === 0) {
-        isEmpty = 1;
-      }
-    });
+  const onDecrement = (id, category) => {
+    const newProduct = filteredProducts[category].map((product) => (product.id === id ? {
+      ...product,
+      count: product.count > 0 ? product.count - 1 : product.count,
+      stock: product.count > 0 ? product.stock + 1 : product.stock,
+    } : product));
 
-    if (isEmpty) {
-      return;
-    }
-    setCartCount(cartCount - 1);
-    const newProducts = products.map((eachProduct) => {
-      if (eachProduct.id === id) {
-        return { ...eachProduct, count: eachProduct.count - 1 };
-      }
-      return eachProduct;
-    });
-
-    setProducts(newProducts);
-
-    setCartItems(newProducts);
-
-    const newCartItems = newProducts.filter((product) => product.count > 0);
-    setCartItems(newCartItems);
+    const newCount = (filteredProducts[category].find(
+      (product) => { if (product.id === id) return product.count > 0; return false; },
+    )) ? cartCount - 1 : cartCount;
+    setCartCount(newCount);
+    filteredProducts[category] = newProduct;
+    setFilteredProducts(filteredProducts);
+    const newCartItem = filteredProducts[category].filter((product) => product.count > 0);
+    cartItems[category] = newCartItem;
+    setCartItems(cartItems);
   };
+  useEffect(async () => {
+    const order = await getData('/orders');
+    const allOrders = order.data;
+    setOrders(allOrders);
+  }, [], [orders], [cartItems]);
 
+  useEffect(async () => {
+    const items = await getData('/items');
+    const itemsObjects = items.data;
+    setProducts(itemsObjects);
+    const filterProducts = groupByCategory(itemsObjects);
+    setIsLoaded(true);
+    setFilteredProducts(filterProducts);
+  }, []);
+
+  const onCheckout = async () => {
+    const finalOrder = [];
+    let finOrder = {};
+    Object.values(cartItems).forEach((eachCategory) => {
+      eachCategory.forEach((eachProduct) => {
+        const item = {
+          id: eachProduct.id,
+          name: eachProduct.name,
+          price: eachProduct.price,
+          count: eachProduct.count,
+          category: eachProduct.category,
+        };
+        finalOrder.push(item);
+      });
+      finOrder = { items: finalOrder };
+    });
+
+    const response = await postData('/orders', finOrder);
+    if (response.data) {
+      const newAllOrders = [...orders,
+        response.data.data];
+
+      setOrders(newAllOrders);
+      setCartItems({});
+      setCartCount(0);
+      return true;
+    }
+    return false;
+  };
   return (
 
     <div className="App">
@@ -150,7 +134,7 @@ const App = () => {
           <Route path="/" exact>
             <div className="all-products">
               <Home
-                products={products}
+                filteredProducts={filteredProducts}
                 onDecrement={onDecrement}
                 onIncrement={onIncrement}
               />
@@ -161,10 +145,10 @@ const App = () => {
             <Cart cartItems={cartItems} cartCount={cartCount} />
           </Route>
           <Route path="/checkout" exact>
-            <Checkout />
+            <Checkout onSubmitForm={onCheckout} />
           </Route>
           <Route path="/allorders">
-            <Allorder />
+            <Allorders allOrders={orders} />
           </Route>
 
         </Switch>

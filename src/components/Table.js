@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Cart.scss';
@@ -16,14 +17,23 @@ const Table = (props) => {
           </tr>
         </thead>
         <tbody>
-          {cartItems.map((eachItem) => (
-            <tr key={eachItem.id}>
-              <td>{eachItem.name}</td>
-              <td>{eachItem.price}</td>
-              <td>{eachItem.quantity * eachItem.count}</td>
-              <td>{eachItem.price * eachItem.count}</td>
-            </tr>
-          )) }
+          {Object.keys(cartItems).map((eachCategory) => (
+            <React.Fragment key={eachCategory}>
+              <tr>
+                <td>{eachCategory}</td>
+              </tr>
+
+              {cartItems[eachCategory].map((eachItem) => (
+                <tr key={eachItem.id}>
+                  <td>{eachItem.name}</td>
+                  <td>{eachItem.price}</td>
+                  <td>{eachItem.quantity * eachItem.count}</td>
+                  <td>{eachItem.price * eachItem.count}</td>
+                </tr>
+              ))}
+            </React.Fragment>
+          ))}
+
         </tbody>
       </table>
     </div>
@@ -33,12 +43,15 @@ const Table = (props) => {
 export default Table;
 
 Table.propTypes = {
-  cartItems: PropTypes.arrayOf(PropTypes.shape({
-    image: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    count: PropTypes.number.isRequired,
-    quantity: PropTypes.number.isRequired,
-  })).isRequired,
+  cartItems: PropTypes.shape({
+    category: PropTypes.arrayOf(
+      PropTypes.shape({
+        count: PropTypes.number.isRequired,
+        stock: PropTypes.number.isRequired,
+        price: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+      }),
+    ),
+  }).isRequired,
   className: PropTypes.string.isRequired,
 };

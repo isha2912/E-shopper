@@ -4,13 +4,15 @@ import Table from './Table';
 
 describe('Table component', () => {
   const mockProp = {
-    cartItems: [{
-      image: 'imaged',
-      name: 'apple',
-      price: 10,
-      count: 2,
-      quantity: 2,
-    }],
+    cartItems: {
+      fruits: [{
+        id: 1,
+        name: 'apple',
+        price: 10,
+        count: 2,
+        quantity: 2,
+      }],
+    },
     className: 'table',
   };
   afterEach(() => jest.clearAllMocks());
@@ -23,5 +25,6 @@ describe('Table component', () => {
     screen.getByText('apple');
     screen.getByText('10');
     screen.getByText('4');
+    screen.logTestingPlaygroundURL();
   });
 });

@@ -10,7 +10,7 @@ const Product = ((props) => {
 
   return (
     <div className="product-container">
-      <img className="img-product" src={product.image} alt="fruit" />
+      <img className="img-product" src="assets/banana.png" alt="fruit" />
       <div data-testid="card-img" className="product-name">
         {product.name}
       </div>
@@ -38,7 +38,6 @@ export default Product;
 
 Product.propTypes = {
   product: PropTypes.shape({
-    image: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     count: PropTypes.number.isRequired,

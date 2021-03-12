@@ -33,6 +33,11 @@ Object {
             <tbody>
               <tr>
                 <td>
+                  fruits
+                </td>
+              </tr>
+              <tr>
+                <td>
                   apple
                 </td>
                 <td>
@@ -76,6 +81,11 @@ Object {
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td>
+                fruits
+              </td>
+            </tr>
             <tr>
               <td>
                 apple

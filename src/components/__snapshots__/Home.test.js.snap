@@ -6,118 +6,136 @@ Object {
     "asFragment": [Function],
     "baseElement": <body>
       <div>
-        <div
-          class="all-products"
-        >
+        <div>
           <div
-            class="product-container"
+            class="row"
           >
-            <img
-              alt="fruit"
-              class="img-product"
-              src="apple.jpg"
-            />
+            <h1>
+              fruits
+            </h1>
             <div
-              class="product-name"
-              data-testid="card-img"
+              class="all-products"
             >
-              apple
-            </div>
-            <div
-              class="product-quantity"
-            >
-              1
-               
-              Kg
-            </div>
-            <div
-              class="product-price"
-            >
-              MRP
-               
-              20
-            </div>
-            <div
-              class="counter"
-            >
-              <button
-                class="button-decrement"
-                type="button"
-              >
-                -
-              </button>
               <div
-                class="in-basket"
+                class="product-container"
               >
-                2
-                 
-                in Basket
+                <img
+                  alt="fruit"
+                  class="img-product"
+                  src="assets/banana.png"
+                />
+                <div
+                  class="product-name"
+                  data-testid="card-img"
+                >
+                  apple
+                </div>
+                <div
+                  class="product-quantity"
+                >
+                  1
+                   
+                  Kg
+                </div>
+                <div
+                  class="product-price"
+                >
+                  MRP
+                   
+                  20
+                </div>
+                <div
+                  class="counter"
+                >
+                  <button
+                    class="button-decrement"
+                    type="button"
+                  >
+                    -
+                  </button>
+                  <div
+                    class="in-basket"
+                  >
+                    2
+                     
+                    in Basket
+                  </div>
+                  <button
+                    class="button-increment"
+                    type="button"
+                  >
+                    +
+                  </button>
+                </div>
               </div>
-              <button
-                class="button-increment"
-                type="button"
-              >
-                +
-              </button>
             </div>
           </div>
         </div>
       </div>
     </body>,
     "container": <div>
-      <div
-        class="all-products"
-      >
+      <div>
         <div
-          class="product-container"
+          class="row"
         >
-          <img
-            alt="fruit"
-            class="img-product"
-            src="apple.jpg"
-          />
+          <h1>
+            fruits
+          </h1>
           <div
-            class="product-name"
-            data-testid="card-img"
+            class="all-products"
           >
-            apple
-          </div>
-          <div
-            class="product-quantity"
-          >
-            1
-             
-            Kg
-          </div>
-          <div
-            class="product-price"
-          >
-            MRP
-             
-            20
-          </div>
-          <div
-            class="counter"
-          >
-            <button
-              class="button-decrement"
-              type="button"
-            >
-              -
-            </button>
             <div
-              class="in-basket"
+              class="product-container"
             >
-              2
-               
-              in Basket
+              <img
+                alt="fruit"
+                class="img-product"
+                src="assets/banana.png"
+              />
+              <div
+                class="product-name"
+                data-testid="card-img"
+              >
+                apple
+              </div>
+              <div
+                class="product-quantity"
+              >
+                1
+                 
+                Kg
+              </div>
+              <div
+                class="product-price"
+              >
+                MRP
+                 
+                20
+              </div>
+              <div
+                class="counter"
+              >
+                <button
+                  class="button-decrement"
+                  type="button"
+                >
+                  -
+                </button>
+                <div
+                  class="in-basket"
+                >
+                  2
+                   
+                  in Basket
+                </div>
+                <button
+                  class="button-increment"
+                  type="button"
+                >
+                  +
+                </button>
+              </div>
             </div>
-            <button
-              class="button-increment"
-              type="button"
-            >
-              +
-            </button>
           </div>
         </div>
       </div>
