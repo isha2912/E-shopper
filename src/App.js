@@ -1,41 +1,39 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import axios from 'axios';
+import axiosUtil from './utils/api';
 import { ThemeContext } from './components/ThemeContext';
 import './App.css';
-import { getData, postData } from './utils/axios.util';
-import Header from './components/Header';
-import Home from './components/Home';
-import Cart from './components/Cart';
-import Checkout from './components/Checkout';
-import Allorders from './components/Allorders';
+
+import Header from './components/Header/Header';
+import Home from './components/Home/Home';
+import Cart from './components/Cart/Cart';
+import Checkout from './components/Checkout/Checkout';
+import Allorders from './components/Allorders/Allorders';
+
+export const groupByCategory = (items) => items.reduce((acc, product) => {
+  const newProduct = {
+    ...product,
+    quantity: 0,
+    stock: product.count,
+    count: 0,
+  };
+  const { category } = product;
+  if (!acc[category]) {
+    acc[category] = [];
+  }
+  acc[category].push(newProduct);
+  return acc;
+}, {});
 
 const App = () => {
   const [cartItems, setCartItems] = useState({});
   const [orders, setOrders] = useState([]);
-  // eslint-disable-next-line no-unused-vars
   const [isLoaded, setIsLoaded] = useState(false);
-  const [products, setProducts] = useState([]);
   const [cartCount, setCartCount] = useState(0);
   const [theme, setTheme] = useState(0);
   const [filteredProducts, setFilteredProducts] = useState({});
-  const groupByCategory = (items) => items.reduce((acc, product) => {
-    const newProduct = {
-      ...product,
-      quantity: 0,
-      stock: product.count,
-      count: 0,
-
-    };
-    // console.log(newProduct);
-    const { category } = product;
-    if (!acc[category]) {
-      acc[category] = [];
-    }
-    acc[category].push(newProduct);
-    return acc;
-  }, {});
 
   const onIncrement = (id, category) => {
     const newProduct = filteredProducts[category].map((eachProduct) => (
@@ -76,15 +74,14 @@ const App = () => {
     setCartItems(cartItems);
   };
   useEffect(async () => {
-    const order = await getData('/orders');
-    const allOrders = order.data;
+    const order = await axiosUtil.getOrders();
+    const allOrders = order;
     setOrders(allOrders);
-  }, [], [orders], [cartItems]);
+  }, []);
 
   useEffect(async () => {
-    const items = await getData('/items');
-    const itemsObjects = items.data;
-    setProducts(itemsObjects);
+    const items = await axiosUtil.getItems();
+    const itemsObjects = items;
     const filterProducts = groupByCategory(itemsObjects);
     setIsLoaded(true);
     setFilteredProducts(filterProducts);
@@ -107,11 +104,9 @@ const App = () => {
       finOrder = { items: finalOrder };
     });
 
-    const response = await postData('/orders', finOrder);
+    const response = await axios.post('./orders', finOrder);
     if (response.data) {
-      const newAllOrders = [...orders,
-        response.data.data];
-
+      const newAllOrders = [...orders, response.data.data];
       setOrders(newAllOrders);
       setCartItems({});
       setCartCount(0);
@@ -125,7 +120,6 @@ const App = () => {
 
       <BrowserRouter>
         <ThemeContext.Provider value={theme}>
-          {' '}
           <Header cartCount={cartCount} />
         </ThemeContext.Provider>
         <button type="button" onClick={() => setTheme(!theme)}> Theme change </button>

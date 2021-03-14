@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Counter from './Counter';
+import Counter from '../Counter/Counter';
 import './Product.scss';
 
 const Product = ((props) => {
@@ -38,7 +39,7 @@ export default Product;
 
 Product.propTypes = {
   product: PropTypes.shape({
-    name: PropTypes.string.isRequired,
+
     price: PropTypes.number.isRequired,
     count: PropTypes.number.isRequired,
     quantity: PropTypes.number.isRequired,

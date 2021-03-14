@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import {
   Formik, Field, Form, ErrorMessage,
 } from 'formik';
-import Validation from './UserValidation';
+import Validation from '../UserValidation';
 import './Checkout.scss';
 
 const Checkout = ({ onSubmitForm }) => {
@@ -25,6 +25,7 @@ const Checkout = ({ onSubmitForm }) => {
         validationSchema={Validation}
       // eslint-disable-next-line no-unused-vars
         onSubmit={async (fields) => {
+          onSubmitForm();
           setMessage('Thankyou for Shpping with us');
         }}
       >

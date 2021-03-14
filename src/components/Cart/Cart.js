@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Cart.scss';
 import PropTypes from 'prop-types';
-import Table from './Table';
+import Table from '../Table/Table';
 
 const Cart = (props) => {
   const { cartItems } = props;
@@ -15,7 +15,7 @@ const Cart = (props) => {
 
   return (
 
-    <div className="cart-container">
+    <div data-testid="cart" className="cart-container">
       <h1 className="basket-header">
         Your Basket
         {' '}

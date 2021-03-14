@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Cart.scss';
+import '../Cart/Cart.scss';
 
 const Table = (props) => {
   const { cartItems, className } = props;

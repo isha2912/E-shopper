@@ -4,7 +4,7 @@ import React, { useContext } from 'react';
 import './Header.scss';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { ThemeContext } from './ThemeContext';
+import { ThemeContext } from '../ThemeContext';
 
 const Header = (props) => {
   const { cartCount } = props;
