@@ -2,41 +2,42 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import './Allorders.scss';
+import Table from '../Table/Table';
+import filterUtil from '../../utils/api';
 
 const Allorders = (props) => {
   const { allOrders } = props;
+  const totalAmount = allOrders.map((eachOrder) => {
+    const amount = eachOrder.items.reduce((acc, cur) => (acc + cur.price), 0);
+    return amount;
+  });
   return (
-    <div className="order-container">
-      <h1> Post Orders </h1>
-      <div className="main-content">
-        <table>
+    <div className="all-orders">
+      Post Orders
+      <table className="top-table">
+        <tbody>
           <tr>
-            <td>Order id</td>
-            <td>Date</td>
-            <td>Items</td>
+            <th>Order id</th>
+            <th> Date</th>
+            <th>amount</th>
+            <th> Items</th>
           </tr>
-          {allOrders.map((eachOrder) => (
-            <tr key={eachOrder.id}>
-              <td>{eachOrder.id}</td>
-              <td>{new Date(eachOrder.date).toString()}</td>
-              <td>
-                {(eachOrder.items).map((eachItem) => (
-                  <table key={eachItem.id}>
-                    <tr>
-                      <td>{eachItem.id}</td>
-                      <td>{eachItem.name}</td>
-                      <td>{eachItem.count}</td>
-                    </tr>
-                  </table>
-                ))}
-              </td>
-            </tr>
+          {allOrders.map((eachOrder, index) => (
+            <React.Fragment key={eachOrder.id}>
+              <tr>
+                <td>{eachOrder.id}</td>
+                <td>{eachOrder.date.toString()}</td>
+                <td>{totalAmount[index]}</td>
+                <td>{eachOrder.items.length}</td>
+              </tr>
+              <tr>
+                <Table cartItems={filterUtil.groupByCategory(eachOrder.items)} className="table1" />
+              </tr>
+            </React.Fragment>
           ))}
-        </table>
-      </div>
-
+        </tbody>
+      </table>
     </div>
-
   );
 };
 export default Allorders;

@@ -1,11 +1,17 @@
-.order-container {
+.all-orders {
   display: flex;
   flex-direction: column;
   margin: 3rem;
+  flex-wrap: wrap;
 }
 .top-table {
   display: flex;
   flex-direction: column;
+  margin-top: 1rem;
+
+  height: 20%;
+  width: 20rem;
+  border-collapse: collapse;
 }
 
 .tab-header {

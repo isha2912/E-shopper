@@ -5,27 +5,11 @@ import axios from 'axios';
 import axiosUtil from './utils/api';
 import { ThemeContext } from './components/ThemeContext';
 import './App.css';
-
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import Cart from './components/Cart/Cart';
 import Checkout from './components/Checkout/Checkout';
 import Allorders from './components/Allorders/Allorders';
-
-export const groupByCategory = (items) => items.reduce((acc, product) => {
-  const newProduct = {
-    ...product,
-    quantity: 0,
-    stock: product.count,
-    count: 0,
-  };
-  const { category } = product;
-  if (!acc[category]) {
-    acc[category] = [];
-  }
-  acc[category].push(newProduct);
-  return acc;
-}, {});
 
 const App = () => {
   const [cartItems, setCartItems] = useState({});
@@ -74,15 +58,16 @@ const App = () => {
     setCartItems(cartItems);
   };
   useEffect(async () => {
-    const order = await axiosUtil.getOrders();
-    const allOrders = order;
-    setOrders(allOrders);
+    const receivedOrders = await axiosUtil.getOrders();
+
+    setOrders(receivedOrders);
   }, []);
 
   useEffect(async () => {
     const items = await axiosUtil.getItems();
     const itemsObjects = items;
-    const filterProducts = groupByCategory(itemsObjects);
+    console.log(items);
+    const filterProducts = axiosUtil.groupByCategory(itemsObjects);
     setIsLoaded(true);
     setFilteredProducts(filterProducts);
   }, []);
